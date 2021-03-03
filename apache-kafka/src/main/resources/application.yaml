@@ -1,0 +1,25 @@
+# camel configuration
+camel:
+  springboot:
+    main-run-controller: true
+
+kafka:
+  server : localhost
+  port : 9092
+  topic : stock-exchange-topic
+  #defined consumer group
+  channel : myConsumerGroup
+  auto.offset.reset: earliest
+
+spring:
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: com.example.apachekafka.serializer.ObjectSerializer
+    consumer:
+      # should be able to specify the consumer class
+      group-id: myConsumerGroup
+      #enable-auto-commit: true
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: com.example.apachekafka.serializer.ObjectDeserializer

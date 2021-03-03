@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/apache-camel-kafka/apache-camel-kafka.iml" filepath="$PROJECT_DIR$/apache-camel-kafka/apache-camel-kafka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apache-kafka/apache-kafka.iml" filepath="$PROJECT_DIR$/apache-kafka/apache-kafka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo1/demo1.iml" filepath="$PROJECT_DIR$/demo1/demo1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/easy-template/easy-template.iml" filepath="$PROJECT_DIR$/easy-template/easy-template.iml" />
+      <module fileurl="file://$PROJECT_DIR$/faxrobot/faxrobot.iml" filepath="$PROJECT_DIR$/faxrobot/faxrobot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hackerrank/hackerrank.iml" filepath="$PROJECT_DIR$/hackerrank/hackerrank.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpa-transaction/jpa-transaction.iml" filepath="$PROJECT_DIR$/jpa-transaction/jpa-transaction.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-proxy/spring-proxy.iml" filepath="$PROJECT_DIR$/spring-proxy/spring-proxy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stock-exchange/stock-price.iml" filepath="$PROJECT_DIR$/stock-exchange/stock-price.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/training.iml" filepath="$PROJECT_DIR$/.idea/training.iml" />
+    </modules>
+  </component>
+</project>

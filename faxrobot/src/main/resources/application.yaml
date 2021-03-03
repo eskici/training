@@ -1,0 +1,33 @@
+# camel configuration
+camel:
+  springboot:
+    main-run-controller: true
+
+spring:
+  main:
+    web-application-type: none
+
+datasource:
+  crm:
+    serverName: avststcrmdb.avivasa.local
+    portNumber: 60000
+    user: MAFUSR
+    password: ENC(tyTygcMv92ltJCYT9q7mVswCPO/FNA0I)
+    databaseName: PPCRM
+    driverType: 4
+
+faxrobot:
+  route:
+    transfer: file:/mnt/faxrobot/AktarimIslemleri/
+    fax: file:/mnt/faxrobot/MusteriHizmetleri/
+  directory:
+    dirConvertToImage: /mnt/faxrobot/pdf/tmp/images/
+    dirSplitToPages: /mnt/faxrobot/pdf/tmp/pages/
+  licence:
+    encryptedFile: /appdocs/servis/dispatch/faxrobot/Aspose.Barcode.Enc.lic
+    keyFile: /appdocs/servis/dispatch/faxrobot/Aspose.Barcode.Key.txt
+    file: /appdocs/servis/dispatch/faxrobot/Aspose.BarCode.lic
+  convert:
+    dpi: 125
+  process:
+    maxRecordSize: 50

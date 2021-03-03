@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="stock-price" />
+        <module name="jpa-transaction" />
+        <module name="faxrobot" />
+        <module name="easy-template" />
+        <module name="spring-proxy" />
+        <module name="apache-camel-kafka" />
+        <module name="apache-kafka" />
+        <module name="demo1" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="apache-camel" target="11" />
+      <module name="apache-camel-kafka" target="8" />
+      <module name="apache-kafka" target="11" />
+      <module name="demo1" target="11" />
+      <module name="easy-template" target="11" />
+      <module name="faxrobot" target="11" />
+      <module name="jpa-transaction" target="1.8" />
+      <module name="spring-proxy" target="11" />
+      <module name="stock-price" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="apache-camel" options="-parameters" />
+      <module name="apache-camel-kafka" options="-parameters" />
+      <module name="apache-kafka" options="-parameters" />
+      <module name="demo1" options="-parameters" />
+      <module name="easy-template" options="-parameters" />
+      <module name="faxrobot" options="-parameters" />
+      <module name="jpa-transaction" options="-parameters" />
+      <module name="spring-proxy" options="-parameters" />
+    </option>
+  </component>
+</project>
