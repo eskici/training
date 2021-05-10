@@ -1,8 +1,8 @@
-package com.moss.project.eneasy.model;
+package com.moss.project.eneasy.entity;
 
 import java.util.Set;
 
-public class UserTransaction extends BaseModel {
+public class UserTransaction extends BaseEntity {
 
 	/**
 	 * 

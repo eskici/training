@@ -2,7 +2,7 @@ package com.moss.project.eneasy.service;
 
 import java.util.List;
 
-import com.moss.project.eneasy.model.UserEntity;
+import com.moss.project.eneasy.entity.UserEntity;
 
 public interface IUserService {
 	List<UserEntity> readLastUserEntitys();

@@ -2,15 +2,14 @@ package com.moss.project.eneasy.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 
 import com.moss.project.eneasy.dao.UserDAO;
-import com.moss.project.eneasy.model.UserEntity;
-import org.springframework.stereotype.Service;
+import com.moss.project.eneasy.entity.UserEntity;
 
-public class UserServiceImpl implements IUserService {
+@AllArgsConstructor
+public class UserService implements IUserService {
 
-	@Autowired
 	private UserDAO userDAO;
 	
 	public List<UserEntity> readLastUserEntitys() {

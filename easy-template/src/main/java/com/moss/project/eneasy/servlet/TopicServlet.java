@@ -1,7 +1,5 @@
 package com.moss.project.eneasy.servlet;
 
-import com.moss.project.eneasy.service.ITopicService;
-
 import javax.servlet.http.HttpServlet;
 
 /**
@@ -9,7 +7,6 @@ import javax.servlet.http.HttpServlet;
  */
 public class TopicServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ITopicService topicService;
 
 	/**
 	 * @see HttpServlet#HttpServlet()

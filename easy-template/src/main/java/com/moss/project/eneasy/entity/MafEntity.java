@@ -1,4 +1,4 @@
-package com.moss.project.eneasy.model;
+package com.moss.project.eneasy.entity;
 
 import java.io.Serializable;
 

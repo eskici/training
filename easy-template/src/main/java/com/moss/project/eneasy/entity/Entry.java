@@ -1,25 +1,25 @@
-package com.moss.project.eneasy.model;
+package com.moss.project.eneasy.entity;
 
-import com.moss.project.eneasy.enums.TopicStatus;
+import com.moss.project.eneasy.enums.EnumStatus;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
-@Table(name = "ENTRY")
+@Table(schema = "RECOMMEND", name = "ENTRY")
 @Entity
 @Setter
 @Getter
 @Where(clause = "RECORD_STATUS = 'A'")
-public class Entry extends BaseModel implements MafEntity<Long> {
+public class Entry extends BaseEntity {
 
 	@Column(name = "CONTENT")
 	private String content;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "STATUS")
-	private TopicStatus status;
+	private EnumStatus status;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private UserEntity createdBy;

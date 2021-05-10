@@ -1,6 +1,5 @@
-package com.moss.project.eneasy.model;
+package com.moss.project.eneasy.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import com.moss.project.eneasy.util.MyConstants;
@@ -13,7 +12,7 @@ import javax.persistence.*;
 @MappedSuperclass
 @Getter
 @Setter
-public class BaseModel implements Serializable {
+public class BaseEntity implements MafEntity<Long>  {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqGen")
@@ -31,8 +30,7 @@ public class BaseModel implements Serializable {
 	@Column(name = "RECORD_STATUS")
 	private String recordStatus;
 
-	public BaseModel() {
-		// TODO Auto-generated constructor stub
+	public BaseEntity() {
 		this.setRecordStatus(MyConstants.RECORD_STATUS_ACTIVE);
 		this.setCreationDate(new Date());
 	}

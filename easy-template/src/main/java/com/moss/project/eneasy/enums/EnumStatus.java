@@ -3,10 +3,10 @@ package com.moss.project.eneasy.enums;
 /**
  * @author Taner YILDIRIM
  */
-public enum TopicStatus {
+public enum EnumStatus {
 
     CANCELLED("IP"), APPROVED("ON"), WAITING("BK");
 
-    TopicStatus(String value) {
+    EnumStatus(String value) {
     }
 }

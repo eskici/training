@@ -1,4 +1,4 @@
-package com.moss.project.eneasy.rest.response;
+package com.moss.project.eneasy.web.response;
 
 
 import com.moss.project.eneasy.exception.ExceptionInfo;

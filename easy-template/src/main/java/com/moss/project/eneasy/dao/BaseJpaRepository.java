@@ -1,7 +1,6 @@
 package com.moss.project.eneasy.dao;
 
-import com.moss.project.eneasy.model.BaseModel;
-import com.moss.project.eneasy.model.MafEntity;
+import com.moss.project.eneasy.entity.MafEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;

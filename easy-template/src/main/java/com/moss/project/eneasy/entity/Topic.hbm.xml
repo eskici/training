@@ -2,18 +2,17 @@
 <!DOCTYPE hibernate-mapping PUBLIC
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping package="com.moss.project.eneasy.model">
-	<class name="Entry" table="ENTRY" dynamic-update="true"
+<hibernate-mapping package="com.moss.project.eneasy.entity">
+	<class name="Topic" table="TOPIC" dynamic-update="true"
 		where="RECORD_STATUS='A'">
   	  <id name="objid" type="java.lang.String" column="OBJID" length="32">
         <generator class="uuid.hex" />
     	</id>
 
-		<property name="content" column="CONTENT" />
+		<property name="name" column="NAME" />
 		<property name="status" column="STATUS" />
 		<property name="creationDate" column="CREATION_DATE" />
 		<property name="lastChangeDate" column="LAST_CHANGE_DATE" />
-		<many-to-one name="topic" column="TOPIC_ID" not-null="true"/>
 		<many-to-one name="createdBy" column="CREATED_BY" not-null="false" lazy="false"/>
 		<!-- 
 		<many-to-one name="address" lazy="false" class="Address"
@@ -25,5 +24,9 @@
 		</set>
 		 -->
 		<property name="recordStatus" column="RECORD_STATUS" />
+		<set name="entries" cascade="none" lazy="false" table="ENTRY">
+			<key column="TOPIC_ID" not-null="false"></key>
+			<one-to-many class="Entry" />
+		</set>		
 	</class>
 </hibernate-mapping>

@@ -1,9 +1,8 @@
 package com.moss.project.eneasy.dao;
 
-import com.moss.project.eneasy.enums.TopicStatus;
-import com.moss.project.eneasy.model.Entry;
-import com.moss.project.eneasy.model.Topic;
-import com.moss.project.eneasy.model.UserEntity;
+import com.moss.project.eneasy.enums.EnumStatus;
+import com.moss.project.eneasy.entity.Entry;
+import com.moss.project.eneasy.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,16 +14,13 @@ public class EntryDAOImpl {
 
 	private EntryRepository entryRepository;
 
-	public List<Entry> readLastEntries(Topic topic){
-		return entryRepository.findAllByTopicAndStatusOrderByLastChangeDateAsc(topic, TopicStatus.APPROVED);
-	}
 
 	public List<Entry> readMyEntries(UserEntity currentUser) {
-		return entryRepository.findAllByCreatedByAndStatusOrderByLastChangeDate(currentUser, TopicStatus.APPROVED);
+		return entryRepository.findAllByCreatedByAndStatusOrderByLastChangeDate(currentUser, EnumStatus.APPROVED);
 	}
 
 	public List<Entry> readWaitingEntrys() {
-		return entryRepository.findAllByStatusOrderByLastChangeDateAsc(TopicStatus.WAITING);
+		return entryRepository.findAllByStatusOrderByLastChangeDateAsc(EnumStatus.WAITING);
 	}
 
 	public Entry readEntry(Long objid){
@@ -35,6 +31,7 @@ public class EntryDAOImpl {
 	public void saveOrUpdate(Entry Entry){
 		entryRepository.save(Entry);
 	}
+
 
 //	public List<Entry> searchEntry(String title){
 //		 	Session session = getSessionFactory().getCurrentSession();

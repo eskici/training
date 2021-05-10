@@ -1,4 +1,4 @@
-package com.moss.project.eneasy.rest.request;
+package com.moss.project.eneasy.web.request;
 
 import lombok.Data;
 
@@ -8,5 +8,5 @@ import lombok.Data;
 @Data
 public class AddEntryRequest {
     private String content;
-    private Long topicId;
+    private Long entryId;
 }

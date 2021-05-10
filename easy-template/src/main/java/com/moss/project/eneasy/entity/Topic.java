@@ -1,39 +1,39 @@
-package com.moss.project.eneasy.model;
+package com.moss.project.eneasy.entity;
 
-import com.moss.project.eneasy.enums.TopicStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.moss.project.eneasy.enums.EnumStatus;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-@Table(name = "TOPIC")
+@Table(schema = "RECOMMEND", name = "TOPIC")
 @Entity
 @Getter
 @Setter
 @Where(clause = "RECORD_STATUS = 'A'")
-public class Topic  extends BaseModel implements MafEntity<Long> {
+public class Topic  extends BaseEntity {
 
 	@Column
 	private String name;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "STATUS")
-	private TopicStatus status;
+	private EnumStatus status;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private UserEntity createdBy;
 
+	@JsonIgnore
 	@OneToMany(
+			mappedBy = "topic",
 			cascade = CascadeType.ALL,
 			orphanRemoval = true,
-			fetch = FetchType.EAGER
+			fetch = FetchType.LAZY
 	)
-	@JoinColumn(name = "TOPIC_ID")
 	private List<Entry> entries = new ArrayList<>();
 
 }

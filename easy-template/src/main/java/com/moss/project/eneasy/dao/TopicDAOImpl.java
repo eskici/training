@@ -1,8 +1,8 @@
 package com.moss.project.eneasy.dao;
 
-import com.moss.project.eneasy.enums.TopicStatus;
-import com.moss.project.eneasy.model.Topic;
-import com.moss.project.eneasy.model.UserEntity;
+import com.moss.project.eneasy.enums.EnumStatus;
+import com.moss.project.eneasy.entity.Topic;
+import com.moss.project.eneasy.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ public class TopicDAOImpl {
 
 	@SuppressWarnings("unchecked")
 	public List<Topic> readLastTopics(){
-		return topicRepository.findAllByStatusOrderByLastChangeDateAsc(TopicStatus.APPROVED);
+		return topicRepository.findAllByStatusOrderByLastChangeDateAsc(EnumStatus.APPROVED);
 		/*
 		Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Topic.class);
 		criteria.setMaxResults(50);
@@ -30,12 +30,12 @@ public class TopicDAOImpl {
 
 	@SuppressWarnings("unchecked")
 	public List<Topic> listWaitingTopics(){
-		return topicRepository.findAllByStatusOrderByLastChangeDateAsc(TopicStatus.WAITING);
+		return topicRepository.findAllByStatusOrderByLastChangeDateAsc(EnumStatus.WAITING);
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Topic> readMyTopics(UserEntity user){
-		return topicRepository.findAllByStatusAndCreatedByOrderByLastChangeDateAsc(TopicStatus.APPROVED, user);
+		return topicRepository.findAllByStatusAndCreatedByOrderByLastChangeDateAsc(EnumStatus.APPROVED, user);
 /*
 		Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Topic.class);
 		criteria.add(Expression.eq("status", MyConstants.STATUS_APPROVE));

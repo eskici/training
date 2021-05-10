@@ -1,10 +1,8 @@
 package com.moss.project.eneasy.service;
 
-import com.moss.project.eneasy.dao.UserDAO;
-import com.moss.project.eneasy.model.UserEntity;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.moss.project.eneasy.entity.UserEntity;
 
-public class BaseServiceImpl implements IBaseService {
+public class BaseService implements IBaseService {
 
 
 	public  UserEntity getCurrentUser() {
