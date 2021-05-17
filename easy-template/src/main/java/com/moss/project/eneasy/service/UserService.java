@@ -1,46 +1,49 @@
 package com.moss.project.eneasy.service;
 
+import java.util.Arrays;
 import java.util.List;
 
+import com.moss.project.eneasy.dto.UserDto;
+import com.moss.project.eneasy.entity.Authority;
+import com.moss.project.eneasy.entity.AuthorityType;
+import com.moss.project.eneasy.exception.UserAlreadyExistException;
+import com.moss.project.eneasy.repository.UserRepository;
 import lombok.AllArgsConstructor;
 
-import com.moss.project.eneasy.dao.UserDAO;
-import com.moss.project.eneasy.entity.UserEntity;
+import com.moss.project.eneasy.repository.UserDAO;
+import com.moss.project.eneasy.entity.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @AllArgsConstructor
-public class UserService implements IUserService {
+@Service
+@Transactional
+public class UserService{
 
-	private UserDAO userDAO;
+	private UserRepository userRepository;
 	
-	public List<UserEntity> readLastUserEntitys() {
-		return userDAO.readLastUserEntitys();
+	public Long registerNewUserAccount(UserDto userDto){
+		User user = User.builder()
+				.email(userDto.getEmail())
+				.username(userDto.getUsername())
+				.password(new BCryptPasswordEncoder().encode(userDto.getPassword()))
+				.authorities(Arrays.asList(new Authority(AuthorityType.ROLE_USER)))
+				.build();
+
+		return userRepository.save(user).getId();
 	}
 
-	public void approveUserEntity(String objid) {
-		UserEntity topic = userDAO.readUserEntity(objid);
-		topic.setStatus("ON");
-		userDAO.updateUserEntity(topic);		
+	public User findUserById(String userId) {
+		return userRepository.findById(Long.valueOf(userId)).orElse(null);
+	}
+	public void existEmail(String email) throws UserAlreadyExistException {
+		if(userRepository.findByEmail(email)!= null )
+			throw new UserAlreadyExistException();
 	}
 
-	public void cancelUserEntity(String objid) {
-		UserEntity topic = userDAO.readUserEntity(objid);
-		topic.setStatus("IP");
-		userDAO.updateUserEntity(topic);
-	}
-
-	public void addNewUserEntity(UserEntity user) {
-		userDAO.addNewUserEntity(user);
-	}
-
-	public UserEntity readUserEntity(String objid) {
-		return userDAO.readUserEntity(objid);
-	}
-
-	public List<UserEntity> readWaitingUserEntitys() {
-		return userDAO.readWaitingUserEntitys();
-	}
-
-	public List<UserEntity> searchUserEntity(String title) {
-		return null;
+	public User existUsername(String username) throws UserAlreadyExistException {
+		if(userRepository.findByUsername(username)!= null )
+			throw new UserAlreadyExistException();
 	}
 }

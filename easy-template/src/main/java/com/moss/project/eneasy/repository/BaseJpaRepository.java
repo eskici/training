@@ -1,4 +1,4 @@
-package com.moss.project.eneasy.dao;
+package com.moss.project.eneasy.repository;
 
 import com.moss.project.eneasy.entity.MafEntity;
 import org.springframework.data.domain.Page;

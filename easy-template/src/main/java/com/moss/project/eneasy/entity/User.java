@@ -1,19 +1,21 @@
 package com.moss.project.eneasy.entity;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Where;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Table(schema = "RECOMMEND", name = "USERS")
 @Entity
 @Setter
 @Getter
+@Builder
 @Where(clause = "recordStatus = 'A'")
-public class UserEntity extends BaseEntity {
+public class User extends BaseEntity {
 
 	@Column(name = "USERNAME", nullable = false, unique = true)
 	private String username;
@@ -30,6 +32,11 @@ public class UserEntity extends BaseEntity {
 	@Column(name = "AVATAR")
 	private byte[] avatar;
 
+	private String token;
+	private boolean accountVerified;
+	private int failedLoginAttempts;
+	private boolean loginDisabled;
+
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(schema = "RECOMMEND",
 			name = "USER_AUTHORITY",
@@ -37,7 +44,17 @@ public class UserEntity extends BaseEntity {
 			inverseJoinColumns = { @JoinColumn(name = "AUTHORITY_ID") })
 	private Set<Authority> authorities = new HashSet<>();
 
-	public UserEntity() {
+	public User() {
+	}
+
+	public void addUserAuthority(Authority group){
+		authorities.add(group);
+		group.getUsers().add(this);
+	}
+
+	public void removeUserGroups(Group group){
+		authorities.remove(group);
+		group.getUsers().remove(this);
 	}
 }
 

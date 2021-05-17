@@ -8,7 +8,7 @@ public class UserTransaction extends BaseEntity {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private UserEntity user;
+	private User user;
 	private Set<Entry> entries;
 	private Set<Topic> topics;	
 

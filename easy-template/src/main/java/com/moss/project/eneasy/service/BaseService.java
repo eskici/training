@@ -1,11 +1,11 @@
 package com.moss.project.eneasy.service;
 
-import com.moss.project.eneasy.entity.UserEntity;
+import com.moss.project.eneasy.entity.User;
 
 public class BaseService implements IBaseService {
 
 
-	public  UserEntity getCurrentUser() {
+	public User getCurrentUser() {
 /*
 	    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 

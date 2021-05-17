@@ -66,8 +66,8 @@ public class AdminController {
 
     @GetMapping("/listWaitingEntries")
     @ApiOperation(value = "List waiting entries", notes = "Admin views waiting entries")
-    public ResponseEntity<BaseResponse<List>> listWaitingEntries() {
-        List<Entry> entries = entryService.listWaitingEntrys();
+    public ResponseEntity<BaseResponse<List>> listWaitingEntries(@RequestParam(value = "pageIndex") Integer pageIndex) {
+        List<Entry> entries = entryService.listWaitingEntrys(pageIndex);
         return ResponseEntity.ok(new BaseResponse<>(entries));
     }
 }

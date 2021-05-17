@@ -1,7 +1,7 @@
 package com.moss.project.eneasy.service;
 
-import com.moss.project.eneasy.dao.EntryRepository;
-import com.moss.project.eneasy.dao.TopicRepository;
+import com.moss.project.eneasy.repository.EntryRepository;
+import com.moss.project.eneasy.repository.TopicRepository;
 import com.moss.project.eneasy.enums.EnumStatus;
 import com.moss.project.eneasy.entity.Entry;
 import com.moss.project.eneasy.entity.Topic;

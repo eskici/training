@@ -25,7 +25,7 @@ public class Topic  extends BaseEntity {
 	private EnumStatus status;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	private UserEntity createdBy;
+	private User createdBy;
 
 	@JsonIgnore
 	@OneToMany(

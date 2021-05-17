@@ -1,8 +1,8 @@
 package com.moss.project.eneasy.service;
 
-import com.moss.project.eneasy.entity.UserEntity;
+import com.moss.project.eneasy.entity.User;
 
 public interface IBaseService {
-	public  UserEntity getCurrentUser(); 
+	public User getCurrentUser();
 }
 

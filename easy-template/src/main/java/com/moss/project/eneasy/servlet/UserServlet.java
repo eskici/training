@@ -1,12 +1,12 @@
 package com.moss.project.eneasy.servlet;
 
-import com.moss.project.eneasy.service.IUserService;
-
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
 /**
  * Servlet implementation class UserEntityServlet
  */
+@WebServlet
 public class UserServlet extends HttpServlet  {
 
 	private static final long serialVersionUID = 1L;

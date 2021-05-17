@@ -1,7 +1,7 @@
 package com.moss.project.eneasy.service;
 
-import com.moss.project.eneasy.dao.EntryRepository;
-import com.moss.project.eneasy.dao.TopicDAOImpl;
+import com.moss.project.eneasy.repository.EntryRepository;
+import com.moss.project.eneasy.repository.TopicRepository;
 import com.moss.project.eneasy.enums.EnumStatus;
 import com.moss.project.eneasy.entity.Entry;
 import com.moss.project.eneasy.entity.Topic;
@@ -15,17 +15,17 @@ import java.util.Date;
 import java.util.List;
 
 @Service
+@Transactional
 @AllArgsConstructor
 public class EntryService extends BaseService {
 
-    private TopicDAOImpl topicDAO;
+    private TopicRepository topicRepository;
 
     private EntryRepository entryRepository;
 
-    @Transactional
     public void addEntry(Long topicId, String content) {
 
-        Topic topic = topicDAO.readTopic(topicId);
+        Topic topic = topicRepository.findById(topicId).orElse(null);
         topic.setLastChangeDate(new Date());
 
         Entry entry = new Entry();
@@ -35,7 +35,7 @@ public class EntryService extends BaseService {
         entry.setCreatedBy(getCurrentUser());
 
         entryRepository.save(entry);
-        topicDAO.saveOrUpdate(topic);
+        topicRepository.save(topic);
     }
 
     public void updateEntryStatus(Long entryId, EnumStatus status) {
@@ -50,17 +50,23 @@ public class EntryService extends BaseService {
         entryRepository.save(entry);
     }
 
+    public void approveEntry(Long entryId) {
+        Entry entry = entryRepository.findById(entryId).orElse(null);
+        entry.setStatus(EnumStatus.APPROVED);
+        entryRepository.save(entry);
+    }
+
     public List<Entry> listEntries(Long topicId, int pageIndex) {
-        Topic topic = topicDAO.readTopic(topicId);
+        Topic topic = topicRepository.findById(topicId).orElse(null);
         return entryRepository.findAllByTopicAndStatusOrderById(topic, EnumStatus.APPROVED, PageRequest.of(pageIndex, 10));
     }
 
-    public List<Entry> readMyEntries() {
+    public List<Entry> listMyEntries() {
         return entryRepository.findAllByCreatedByAndStatusOrderByLastChangeDate(getCurrentUser(), EnumStatus.APPROVED);
     }
 
-    public List<Entry> listWaitingEntrys() {
-        return entryRepository.findAllByStatusOrderByLastChangeDateAsc(EnumStatus.WAITING);
+    public List<Entry> listWaitingEntrys(int pageIndex) {
+        return entryRepository.findAllByStatusOrderByLastChangeDateAsc(EnumStatus.WAITING, PageRequest.of(pageIndex, 10));
     }
 
     public void updateEntry(Long entryId, String content) {

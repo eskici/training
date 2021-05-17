@@ -52,7 +52,7 @@ public class EntryController {
     @PostMapping("/listMyEntries")
     @ApiOperation(value = "List user's entries")
     public ResponseEntity<BaseResponse<List>> listMyEntries() {
-        List<Entry> entries= entryService.readMyEntries();
+        List<Entry> entries= entryService.listMyEntries();
         return ResponseEntity.ok(new BaseResponse<List>(entries));
     }
 

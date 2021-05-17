@@ -1,4 +1,4 @@
-package com.moss.project.eneasy.dao;
+package com.moss.project.eneasy.repository;
 
 import java.util.List;
 
@@ -7,37 +7,37 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Order;
 
-import com.moss.project.eneasy.entity.UserEntity;
+import com.moss.project.eneasy.entity.User;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 public class UserDAO extends HibernateDaoSupport {
 
 	@SuppressWarnings("unchecked")
-	public UserEntity findByName(String username){
-		return (UserEntity) getHibernateTemplate().get(UserEntity.class, username);
+	public User findByName(String username){
+		return (User) getHibernateTemplate().get(User.class, username);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<UserEntity> readLastUserEntitys(){
-		Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(UserEntity.class);
+	public List<User> readLastUserEntitys(){
+		Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(User.class);
 		criteria.setMaxResults(50);
 		criteria.addOrder(Order.asc("lastChangeDate"));
 		return criteria.list();
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<UserEntity> readWaitingUserEntitys(){
-		Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(UserEntity.class);
+	public List<User> readWaitingUserEntitys(){
+		Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(User.class);
 		criteria.add(Expression.eq("status", EnumStatus.WAITING));
 		criteria.addOrder(Order.asc("lastChangeDate"));
 		return criteria.list();
 	}
 	
-	public UserEntity readUserEntity(String objid){
-		return (UserEntity) getHibernateTemplate().get(UserEntity.class, objid);
+	public User readUserEntity(String objid){
+		return (User) getHibernateTemplate().get(User.class, objid);
 	}
 	
-	public void addNewUserEntity(UserEntity topic){
+	public void addNewUserEntity(User topic){
 		try{
 		getHibernateTemplate().persist(topic);
 		}catch (Exception e) {
@@ -46,7 +46,7 @@ public class UserDAO extends HibernateDaoSupport {
 		}
 	}
 	
-	public void updateUserEntity(UserEntity topic){
+	public void updateUserEntity(User topic){
 		getHibernateTemplate().update(topic);
 	}	
 
